@@ -1,0 +1,143 @@
+/* Root container */
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+/* Ensure the page takes up the full height of the viewport */
+.page {
+  background-color: #f7f2e9; 
+  min-height: 100vh; /* Full viewport height */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Ensures footer stays at the bottom */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Header and Navigation */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+
+.logo {
+  height: 120px; /* Half bigger */
+}
+
+.nav a {
+  margin: 0 1rem;
+  text-decoration: none;
+  color: #4e342e;
+  font-size: 1.2rem;
+}
+
+.nav a:hover {
+  text-decoration: underline;
+}
+
+/* Banner Styling for Other Pages */
+.banner {
+  background-size: cover; 
+  background-position: center;
+  background-repeat: no-repeat; 
+  height: 400px; 
+  width: 100%;
+}
+
+/* Content Layout for Home Page */
+.content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4rem;
+  flex: 1; /* Allows the content to grow and push the footer down */
+}
+
+.imageSection {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mainImage {
+  max-width: 100%;
+  height: auto;
+}
+
+.textSection {
+  flex: 1;
+  padding-left: 2rem;
+}
+
+.title {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  color: #4e342e;
+}
+
+.description {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  color: #4e342e;
+}
+
+/* Get Started Button */
+.getStartedBtn {
+  background-color: #4e342e;
+  color: white;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.getStartedBtn:hover {
+  background-color: #6e4a2e;
+}
+
+/* Footer Styling */
+.footer {
+  background-color: #4e342e;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
+  width: 100%;
+}
+
+.footer p {
+  margin: 0;
+}
+
+/* Ensure responsiveness on smaller devices */
+@media (max-width: 768px) {
+  .content {
+    flex-direction: column;
+    padding: 2rem;
+  }
+
+  .textSection {
+    padding-left: 0;
+  }
+
+  .title {
+    font-size: 2.5rem;
+  }
+
+  .description {
+    font-size: 1rem;
+  }
+
+  .getStartedBtn {
+    font-size: 1rem;
+    padding: 0.8rem 1.6rem;
+  }
+}
