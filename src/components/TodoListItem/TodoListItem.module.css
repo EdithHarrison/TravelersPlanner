@@ -1,0 +1,43 @@
+.listItem {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  background-color: #3c3c3c;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  justify-content: space-between;
+  max-width: 600px; 
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+}
+
+.checkbox {
+  width: 24px;
+  height: 24px;
+  background-color: #ff69b4;
+  border-radius: 50%;
+  margin-right: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  flex-grow: 1;
+  text-align: left;
+  color: white;
+}
+
+.removeButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: white;
+}
+
+.trashIcon {
+  font-size: 1.5rem;
+  color: #ff69b4;
+}
