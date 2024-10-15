@@ -42,7 +42,6 @@ const TodoContainer = ({ tableName }) => {
       setTodoList(prevList => [...prevList, addedTodo]);
     } catch (error) {
       console.error("Error adding todo:", error);
-      // You might want to show an error message to the user here
     }
   };
 
@@ -64,7 +63,6 @@ const TodoContainer = ({ tableName }) => {
       setTodoList(prevList => prevList.map(todo => todo.id === updated.id ? updated : todo));
     } catch (error) {
       console.error("Error updating todo:", error);
-      // You might want to show an error message to the user here
     }
   };
 
