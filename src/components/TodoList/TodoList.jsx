@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import TodoListItem from '../TodoListItem/TodoListItem';
 import styles from './TodoList.module.css';
 
-const TodoList = ({ todoList, onRemoveTodo, onUpdateTodo }) => {
+const TodoList = ({ todoList, onRemoveTodo, onUpdateTodo, tableName }) => {
   return (
     <ul className={styles.list}>
       {todoList.map(todo => (
@@ -12,6 +12,7 @@ const TodoList = ({ todoList, onRemoveTodo, onUpdateTodo }) => {
           todo={todo}
           onRemoveTodo={onRemoveTodo}
           onUpdateTodo={onUpdateTodo}
+          tableName={tableName}
         />
       ))}
     </ul>
@@ -27,6 +28,7 @@ TodoList.propTypes = {
   ).isRequired,
   onRemoveTodo: PropTypes.func.isRequired,
   onUpdateTodo: PropTypes.func.isRequired,
+  tableName: PropTypes.string.isRequired,
 };
 
 export default TodoList;

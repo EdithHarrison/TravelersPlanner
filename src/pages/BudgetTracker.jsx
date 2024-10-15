@@ -1,35 +1,29 @@
-import React, { useState, useEffect } from 'react';
-import TodoContainer from '../components/TodoContainer';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import TodoContainer from '../components/TodoContainer/TodoContainer';
+import styles from './BudgetTracker.module.css';
 import bannerImage from '../assets/home-banner.svg';
-import { fetchDataFromAirtable, fetchFieldOptions } from '../utils/airtableHelpers';
+import travelersLogo from '../assets/travelers-logo.svg';
 
 function BudgetTracker() {
-  const [todoList, setTodoList] = useState([]);
-  const [fieldOptions, setFieldOptions] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
-  const tableName = "BudgetTracker";
-
-  useEffect(() => {
-    const initPage = async () => {
-      const todos = await fetchDataFromAirtable(tableName);
-      setTodoList(todos);
-      const options = await fetchFieldOptions(tableName);
-      setFieldOptions(options);
-      setIsLoading(false);
-    };
-    initPage();
-  }, []);
-
   return (
-    <div className="page">
-      <div className="banner" style={{ backgroundImage: `url(${bannerImage})` }}>
-        <h1>Budget Tracker</h1>
+    <div className={styles.pageContainer}>
+      <div className={styles.banner} style={{ backgroundImage: `url(${bannerImage})` }}>
+        <header className={styles.header}>
+          <img src={travelersLogo} alt="Travelers Planner Logo" className={styles.logo} />
+          <nav className={styles.nav}>
+            <Link to="/">Home</Link>
+            <Link to="/itinerary">Itinerary</Link>
+            <Link to="/packing-list">Packing List</Link>
+            <Link to="/budget-tracker">Budget Tracker</Link>
+          </nav>
+        </header>
+        <h1 className={styles.pageTitle}>BUDGET TRACKER</h1>
       </div>
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : (
-        <TodoContainer todoList={todoList} tableName={tableName} fieldOptions={fieldOptions} />
-      )}
+      <div className={styles.content}>
+        <TodoContainer tableName="BudgetTracker" />
+      </div>
+      
     </div>
   );
 }
