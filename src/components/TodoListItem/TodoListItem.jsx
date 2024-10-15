@@ -28,27 +28,27 @@ const TodoListItem = ({ todo, onRemoveTodo, onUpdateTodo, tableName }) => {
       switch (tableName) {
         case 'Itinerary':
           return (
-            <>
+            <div className={styles.inputContainer}>
               <input name="Day" value={editableFields.Day || ''} onChange={handleChange} className={styles.input} />
               <input name="StartTime" value={editableFields.StartTime || ''} onChange={handleChange} className={styles.input} />
               <input name="EndTime" value={editableFields.EndTime || ''} onChange={handleChange} className={styles.input} />
               <input name="TodoList" value={editableFields.TodoList || ''} onChange={handleChange} className={styles.input} />
-            </>
+            </div>
           );
         case 'PackingList':
           return (
-            <>
+            <div className={styles.inputContainer}>
               <input name="Type" value={editableFields.Type || ''} onChange={handleChange} className={styles.input} />
               <input name="Items" value={editableFields.Items || ''} onChange={handleChange} className={styles.input} />
-            </>
+            </div>
           );
         case 'BudgetTracker':
           return (
-            <>
+            <div className={styles.inputContainer}>
               <input name="Type" value={editableFields.Type || ''} onChange={handleChange} className={styles.input} />
               <input name="Items" value={editableFields.Items || ''} onChange={handleChange} className={styles.input} />
               <input name="Cost" value={editableFields.Cost || ''} onChange={handleChange} className={styles.input} />
-            </>
+            </div>
           );
         default:
           return null;
