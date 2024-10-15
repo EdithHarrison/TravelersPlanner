@@ -1,21 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './HomePage.module.css';
-import homeBackgroundImage from '../assets/home-background.svg';
-import travelersLogo from '../assets/travelers-logo.svg';
-import timeToTravelImage from '../assets/time-to-travel.svg';
+import homeBackgroundImage from '../../assets/home-background.svg';
+import travelersLogo from '../../assets/travelers-logo.svg';
+import timeToTravelImage from '../../assets/time-to-travel.svg';
+import Navigation from '../Navigation/Navigation'; 
 
 function HomePage() {
   return (
     <div className={styles.homePage} style={{ backgroundImage: `url(${homeBackgroundImage})` }}>
       <header className={styles.homeHeader}>
         <img src={travelersLogo} alt="Travelers Planner Logo" className={styles.homeLogo} />
-        <nav className={styles.homeNav}>
-          <Link to="/">HOME</Link>
-          <Link to="/itinerary">ITINERARY</Link>
-          <Link to="/packing-list">PACKING LIST</Link>
-          <Link to="/budget-tracker">BUDGET TRACKER</Link>
-        </nav>
+        <Navigation /> 
       </header>
 
       <main className={styles.homeMain}>

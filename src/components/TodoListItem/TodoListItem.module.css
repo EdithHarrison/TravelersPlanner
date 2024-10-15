@@ -38,3 +38,29 @@
 .editButton:hover, .saveButton:hover, .removeButton:hover {
   color: #6a2e2e;
 }
+
+.input {
+  flex: 1;
+  margin-right: 10px;
+  padding: 5px;
+}
+
+/* Media query to stack inputs in mobile view */
+@media (max-width: 768px) {
+  .inputContainer {
+    display: flex;
+    flex-direction: column; 
+    width: 100%; 
+  }
+
+  .input {
+    width: 100%; 
+    margin-right: 0;
+    margin-bottom: 10px; 
+  }
+
+  .checkbox{
+    margin-left: 30px;
+  }
+}
+

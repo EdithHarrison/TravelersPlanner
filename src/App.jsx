@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import HomePage from './pages/HomePage';
-import Itinerary from './pages/Itinerary';
-import PackingList from './pages/PackingList';
-import BudgetTracker from './pages/BudgetTracker';
+import HomePage from './pages/HomePage/HomePage';
+import Itinerary from './pages/Itinerary/Itinerary';
+import PackingList from './pages/PackingList/PackingList';
+import BudgetTracker from './pages/BudgetTracker/BudgetTracker';
 import styles from './App.module.css';
 
 function App() {
