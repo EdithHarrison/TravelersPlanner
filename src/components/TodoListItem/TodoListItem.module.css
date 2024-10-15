@@ -1,43 +1,40 @@
 .listItem {
   display: flex;
-  align-items: center;
-  padding: 1rem;
-  background-color: #3c3c3c;
-  margin-bottom: 1rem;
-  border-radius: 4px;
   justify-content: space-between;
-  max-width: 600px; 
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  box-sizing: border-box;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
 }
 
-.checkbox {
-  width: 24px;
-  height: 24px;
-  background-color: #ff69b4;
-  border-radius: 50%;
-  margin-right: 1rem;
+.field {
+  flex: 1;
+  text-align: left;
+  margin-right: 10px;
+}
+
+.actions {
   display: flex;
   align-items: center;
-  justify-content: center;
 }
 
-.title {
-  flex-grow: 1;
-  text-align: left;
-  color: white;
+.checkbox, .editButton, .saveButton, .removeButton {
+  margin-left: 10px;
 }
 
-.removeButton {
+.input {
+  flex: 1;
+  margin-right: 10px;
+  padding: 5px;
+}
+
+.editButton, .saveButton, .removeButton {
   background: none;
   border: none;
   cursor: pointer;
-  color: white;
+  font-size: 16px;
+  color: #4a0e0e;
 }
 
-.trashIcon {
-  font-size: 1.5rem;
-  color: #ff69b4;
+.editButton:hover, .saveButton:hover, .removeButton:hover {
+  color: #6a2e2e;
 }

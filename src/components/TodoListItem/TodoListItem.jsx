@@ -3,126 +3,123 @@ import PropTypes from 'prop-types';
 import styles from './TodoListItem.module.css';
 import { FaTrash, FaEdit, FaSave } from 'react-icons/fa';
 
-const TodoListItem = ({ todo, onRemoveTodo, onUpdateTodo }) => {
-  const { Day, StartTime, EndTime, TodoList, Items, Type, Cost, Status } = todo.fields;
+const TodoListItem = ({ todo, onRemoveTodo, onUpdateTodo, tableName }) => {
   const [isEditing, setIsEditing] = useState(false);
-  const [editableFields, setEditableFields] = useState({
-    Day: Day || '',
-    StartTime: StartTime || '',
-    EndTime: EndTime || '',
-    TodoList: TodoList || '',
-    Items: Items || '',
-    Type: Type || '',
-    Cost: Cost || '',
-    Status: Status === true || Status === 'true',
-  });
+  const [editableFields, setEditableFields] = useState({ ...todo.fields, Status: todo.fields.Status || false });
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setEditableFields({
-      ...editableFields,
+    setEditableFields(prev => ({
+      ...prev,
       [name]: type === 'checkbox' ? checked : value,
-    });
+    }));
+    if (type === 'checkbox') {
+      onUpdateTodo({ id: todo.id, fields: { ...editableFields, Status: checked } });
+    }
   };
 
   const handleSave = () => {
-    onUpdateTodo({
-      ...todo,
-      fields: { 
-        ...editableFields,
-        Cost: parseFloat(editableFields.Cost) || 0,
-      },
-    });
+    onUpdateTodo({ id: todo.id, fields: editableFields });
     setIsEditing(false);
   };
 
-  const handleStatusChange = (e) => {
-    const newStatus = e.target.checked;
-    onUpdateTodo({
-      id: todo.id,
-      fields: { Status: newStatus },
-    });
+  const renderFields = () => {
+    if (isEditing) {
+      switch (tableName) {
+        case 'Itinerary':
+          return (
+            <>
+              <input name="Day" value={editableFields.Day || ''} onChange={handleChange} className={styles.input} />
+              <input name="StartTime" value={editableFields.StartTime || ''} onChange={handleChange} className={styles.input} />
+              <input name="EndTime" value={editableFields.EndTime || ''} onChange={handleChange} className={styles.input} />
+              <input name="TodoList" value={editableFields.TodoList || ''} onChange={handleChange} className={styles.input} />
+            </>
+          );
+        case 'PackingList':
+          return (
+            <>
+              <input name="Type" value={editableFields.Type || ''} onChange={handleChange} className={styles.input} />
+              <input name="Items" value={editableFields.Items || ''} onChange={handleChange} className={styles.input} />
+            </>
+          );
+        case 'BudgetTracker':
+          return (
+            <>
+              <input name="Type" value={editableFields.Type || ''} onChange={handleChange} className={styles.input} />
+              <input name="Items" value={editableFields.Items || ''} onChange={handleChange} className={styles.input} />
+              <input name="Cost" value={editableFields.Cost || ''} onChange={handleChange} className={styles.input} />
+            </>
+          );
+        default:
+          return null;
+      }
+    } else {
+      switch (tableName) {
+        case 'Itinerary':
+          return (
+            <>
+              <span className={styles.field}>{editableFields.Day}</span>
+              <span className={styles.field}>{editableFields.StartTime} - {editableFields.EndTime}</span>
+              <span className={styles.field}>{editableFields.TodoList}</span>
+            </>
+          );
+        case 'PackingList':
+          return (
+            <>
+              <span className={styles.field}>{editableFields.Type}</span>
+              <span className={styles.field}>{editableFields.Items}</span>
+            </>
+          );
+        case 'BudgetTracker':
+          return (
+            <>
+              <span className={styles.field}>{editableFields.Type}</span>
+              <span className={styles.field}>{editableFields.Items}</span>
+              <span className={styles.field}>${editableFields.Cost}</span>
+            </>
+          );
+        default:
+          return null;
+      }
+    }
   };
 
   return (
     <li className={styles.listItem}>
-      {isEditing ? (
-        <>
-          {Day !== undefined && (
-            <input
-              type="text"
-              name="Day"
-              value={editableFields.Day}
-              onChange={handleChange}
-              className={styles.input}
-            />
-          )}
-          {StartTime !== undefined && (
-            <input
-              type="text"
-              name="StartTime"
-              value={editableFields.StartTime}
-              onChange={handleChange}
-              className={styles.input}
-            />
-          )}
-          {EndTime !== undefined && (
-            <input
-              type="text"
-              name="EndTime"
-              value={editableFields.EndTime}
-              onChange={handleChange}
-              className={styles.input}
-            />
-          )}
-          {Items !== undefined && (
-            <input
-              type="text"
-              name="Items"
-              value={editableFields.Items}
-              onChange={handleChange}
-              className={styles.input}
-            />
-          )}
-          {Type !== undefined && (
-            <input
-              type="text"
-              name="Type"
-              value={editableFields.Type}
-              onChange={handleChange}
-              className={styles.input}
-            />
-          )}
-          {Cost !== undefined && (
-            <input
-              type="number"
-              name="Cost"
-              value={editableFields.Cost}
-              onChange={handleChange}
-              className={styles.input}
-            />
-          )}
-          <button onClick={handleSave}><FaSave /></button>
-        </>
-      ) : (
-        <>
-          <span>{TodoList}</span>
-          <span>{Items}</span>
-          <span>{Type}</span>
-          <span>{Cost}</span>
-          <input type="checkbox" checked={editableFields.Status} onChange={handleStatusChange} />
-          <button onClick={() => setIsEditing(true)}><FaEdit /></button>
-          <button onClick={() => onRemoveTodo(todo.id)}><FaTrash /></button>
-        </>
-      )}
+      {renderFields()}
+      <div className={styles.actions}>
+        <input
+          type="checkbox"
+          checked={editableFields.Status || false}
+          onChange={handleChange}
+          name="Status"
+          className={styles.checkbox}
+        />
+        {isEditing ? (
+          <button className={styles.saveButton} onClick={handleSave}>
+            <FaSave />
+          </button>
+        ) : (
+          <button className={styles.editButton} onClick={() => setIsEditing(true)}>
+            <FaEdit />
+          </button>
+        )}
+        <button className={styles.removeButton} onClick={() => onRemoveTodo(todo.id)}>
+          <FaTrash />
+        </button>
+      </div>
     </li>
   );
 };
 
 TodoListItem.propTypes = {
-  todo: PropTypes.object.isRequired,
+  todo: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    fields: PropTypes.object.isRequired,
+  }).isRequired,
   onRemoveTodo: PropTypes.func.isRequired,
   onUpdateTodo: PropTypes.func.isRequired,
+  tableName: PropTypes.string.isRequired,
 };
 
 export default TodoListItem;

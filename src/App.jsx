@@ -4,17 +4,24 @@ import HomePage from './pages/HomePage';
 import Itinerary from './pages/Itinerary';
 import PackingList from './pages/PackingList';
 import BudgetTracker from './pages/BudgetTracker';
-import './App.module.css';
+import styles from './App.module.css';
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/itinerary" element={<Itinerary />} />
-        <Route path="/packing-list" element={<PackingList />} />
-        <Route path="/budget-tracker" element={<BudgetTracker />} />
-      </Routes>
+      <div className={styles.app}>
+        <main className={styles.main}>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/itinerary" element={<Itinerary />} />
+            <Route path="/packing-list" element={<PackingList />} />
+            <Route path="/budget-tracker" element={<BudgetTracker />} />
+          </Routes>
+        </main>
+        <footer className={styles.footer}>
+          <p>Edith Harrison 2024</p>
+        </footer>
+      </div>
     </BrowserRouter>
   );
 }
