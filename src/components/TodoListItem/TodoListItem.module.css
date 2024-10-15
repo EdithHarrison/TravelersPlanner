@@ -4,6 +4,8 @@
   align-items: center;
   padding: 10px;
   border-bottom: 1px solid #ddd;
+  width: 100%;
+  gap: 10px;
 }
 
 .field {
@@ -15,16 +17,12 @@
 .actions {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
+  min-width: 150px;
 }
 
 .checkbox, .editButton, .saveButton, .removeButton {
   margin-left: 10px;
-}
-
-.input {
-  flex: 1;
-  margin-right: 10px;
-  padding: 5px;
 }
 
 .editButton, .saveButton, .removeButton {
@@ -39,18 +37,29 @@
   color: #6a2e2e;
 }
 
+.inputContainer {
+  display: flex;
+  flex-grow: 1; /* Ensure the input container grows */
+  justify-content: space-between;
+  align-items: center;
+  width: 100%; /* Ensure it takes full width */
+}
+
 .input {
-  flex: 1;
+  flex-grow: 1; /* Allow input fields to take available space */
   margin-right: 10px;
   padding: 5px;
+  width: 100%; /* Make inputs stretch to fill available space */
+  max-width: 100%; /* Prevent input from overflowing */
+  box-sizing: border-box; /* Include padding in width calculations */
 }
 
 /* Media query to stack inputs in mobile view */
 @media (max-width: 768px) {
   .inputContainer {
     display: flex;
-    flex-direction: column; 
-    width: 100%; 
+    flex-direction: column;
+    width: 100%;
   }
 
   .input {
@@ -59,8 +68,7 @@
     margin-bottom: 10px; 
   }
 
-  .checkbox{
+  .checkbox {
     margin-left: 30px;
   }
 }
-

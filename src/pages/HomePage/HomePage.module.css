@@ -104,18 +104,18 @@
 
 @media (max-width: 768px) {
   .homeHeader {
-    position: static; /* Ensure it's static but maintain its location at the top */
+    position: static;
     padding: 30px;
-    top: 0; /* Keep it at the top */
+    top: 0;
     left: 0;
     right: 0;
     z-index: 10;
   }
 
   .homeLogo {
-    width: 100px; /* Slightly smaller logo for mobile */
+    width: 100px;
     height: auto;
-    margin-bottom: 10px; /* Add spacing between logo and navigation */
+    margin-bottom: 10px;
   }
 
   .homeNav {

@@ -12,7 +12,7 @@
   position: relative;
   flex: 1;
   margin-right: 10px;
-  min-width: 0; /* Allows flex items to shrink below content size */
+  min-width: 0;
 }
 
 .input, .select {
